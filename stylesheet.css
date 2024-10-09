@@ -1,0 +1,293 @@
+/* -------general properties------- */
+MainWindow {
+    background-color: #454550;
+    border: 2px solid #25253A;
+    border-radius: 11px;
+}
+
+
+QToolBar {
+    spacing: 5px;
+    background-color: #c0c0c0;
+    border: 2px solid #b0b0b0;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 11px;
+}
+
+QToolButton:checked {
+    background-color: #a0a0a0;
+	border: 2px solid #b0b0b0;
+    border-bottom: 2px solid #c0c0c0;
+}
+
+QToolButton:hover {
+    background-color: #909090;
+	border: 2px solid #a0a0a0;
+    border-top: 2px solid #c0c0c0;
+}
+
+QStatusBar{
+	color: white;
+	font-size: 12px;
+	font-weight: 600;
+	font-family: "Lato";
+}
+
+QDial{
+    max-width: 150px;
+}
+
+QComboBox{
+    max-width: 150px;
+}
+
+QLineEdit{
+    max-width: 150px;
+}
+
+QLabel {
+    qproperty-alignment: AlignCenter;
+    border: 2px solid #bbbbbb;
+    border-bottom: 2px solid white;
+    background-color: #eaeaea;
+    background-color: #e0e0e0;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+QRadioButton {
+    border: 2px solid #cccccc;
+    border-top: 2px solid #fafafa;
+    /*background-color: #eaeaea;*/
+    background-color: #e2e2e2;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+QLineEdit {
+    padding: 2px;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+QPushButton {
+    border: 3px solid #cccccc;
+    border-top: 2px solid #fafafa;
+    /*background-color: #eaeaea;*/
+    background-color: #e2e2e2;
+    padding: 8px;
+    font-weight: 500;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    max-width: 150px;
+    border-radius: 10px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+QPushButton:hover {
+    border: 2px solid #d4d4d4;
+    border-top: 2px solid #fafafa;
+    /*background-color: #eaeaea;*/
+    background-color: #f4f4f4;
+    padding: 2px;
+    font-weight: 500;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 8px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+QPushButton::pressed {
+    border: 2px solid #cccccc;
+    border-top: 2px solid #fafafa;
+    /*background-color: #eaeaea;*/
+    background-color: #e2e2e2;
+    padding: 2px;
+    font-weight: 500;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 8px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+QPushButton:checked {
+    border: 2px solid #d4d4d4;
+    border-top: 2px solid #fafafa;
+    /*background-color: #eaeaea;*/
+    background-color: #f2f2f2;
+    padding: 2px;
+    font-weight: 500;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+QComboBox {
+    border: 2px solid #cccccc;
+    border-top: 2px solid #fafafa;
+    /*background-color: #eaeaea;*/
+    background-color: #e2e2e2;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+QToolTip {
+	color: #ffffff;
+	background-color: #333333;
+	border: 1px solid #444444;
+	font-size: 13px;
+}
+
+
+/* Specific definitions */
+.fit {
+    qproperty-alignment: AlignCenter;
+    border: 2px solid #cccccc;
+    border-bottom: 2px solid white;
+    /*background-color: #eaeaea;*/
+    background-color: #e0e0e0;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 13px;
+	color: #008814;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+.PCH {
+    qproperty-alignment: AlignCenter;
+    border: 3px solid #454550 ;
+    border-bottom: 2px solid #454550;
+    /*background-color: #eaeaea;*/
+    background-color: #454550 ;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 13px;
+	color: #454550 ;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+.title {
+    qproperty-alignment: AlignCenter;
+    border: 2px solid #555560 ;
+    /*border-bottom: 0px solid white;*/
+    /*background-color: #eaeaea;*/
+    background-color: #656570 ;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 14px;
+	color: white ;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+.seebeck {
+    border: 5px solid #323232;
+    border-top: 5px solid #323232;
+    background-color: #d7d6d5;
+    padding: 0px;
+    font-weight: bold;
+    font-size: 14px;
+	color: white;
+    /*min-height: 22px;
+    max-height: 22px;*/
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+
+.graphs{
+	background-color: green;
+	font-size: 14px;
+	Background: green;
+}
+
+.slideredit {
+	qproperty-alignment: AlignCenter;
+    border: 2px solid #bbbbbb;
+    border-bottom: 2px solid white;
+    /*background-color: #eaeaea;*/
+    background-color: #f0f0f0;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+	padding-left: 0px;
+    min-height: 26px;
+    max-height: 26px;
+	max-width: 50px;
+	border-left: 0px;
+}
+
+.sliderlabel {
+    padding: 2px;
+	padding-right: 0px ;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 22px;
+    max-height: 22px;
+    border-radius: 2px;
+	border-right: 0px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+}
+
+.gif {
+    qproperty-alignment: AlignRight;
+    border: None;
+    border-bottom: None;
+    background-color: None;
+    background-color: None;
+    /* padding: 2px; */
+    min-height: 50px;
+    max-height: 50px;
+    /* border-radius: 2px; */
+
+}
+
+.header {
+    border: 0px solid #555560 ;
+    border-bottom: 0px solid white;
+    background-color: #f0f0f0 ;
+    padding: 0 px;
+    font-weight: bold;
+    font-size: 18 px;
+	color: black ;
+    min-height: 22px;
+    max-height: 22px;
+    font-family: "Arial, Helvetica, freesans, sans-serif";
+	margin: 0 px;
+}
