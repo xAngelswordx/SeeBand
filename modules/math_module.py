@@ -161,12 +161,14 @@ def spb_carCon(eta: float, meff: float, T: float) -> float:
         # If Fermi energy is inside the band ...
         if eta*np.sign(meff) > 0:
             return (4*np.pi*(2*np.abs(meff)*me*kB*np.abs(eta)/h**2)**1.5)*(2/3) * 1e-6
+            #return ((2*np.abs(meff)*me*kB*T)**1.5/(2*np.pi**2*hbar**3)**1.5)*(2/3) * 1e-6
     
         # If Fermi energy is outside the band ...
         else:
             return 0     
-    else:       
+    else:  
         return 4*np.pi*(2*np.abs(meff)*me*kB*T/h**2)**1.5 * fdint_vec(0.5,np.sign(meff)*eta,T) * 1e-6
+        #return (2*(np.abs(meff)*me*kB*T)**1.5/(2*np.pi**2*hbar**3)) * fdint_vec(0.5,np.sign(meff)*eta,T) * 1e-6
     
 # Calculates the chemical potential of a single band at a temperature T
 def spb_chemPot(eta_here: list[float], temp: float, band_mass: int, fermi_energy: float) -> float:
@@ -1331,6 +1333,7 @@ def dpb_ind_carCon_vs_temp(temp_array: np.ndarray, fermi_energy: float, meff: fl
     for i, temp in enumerate(temp_array):   
         charCon1[i] = spb_carCon(chemPot_array[i], -1, temp) * (-1)
         charCon2[i] = spb_carCon(chemPot_array[i] - gap, meff * degen**(5/3), temp) * np.sign(meff)
+        print(temp, charCon2[i])
     return charCon1, charCon2
 
 

@@ -1,4 +1,4 @@
-from modules import math_module1 as te
+from modules import math_module as te
 import numpy as np
 from scipy import optimize as opt
 # from scipy.optimize import fsolve
@@ -2015,7 +2015,11 @@ class PB_fit:
         temp_array = np.linspace(Tmin, Tmax, Tnumb)
         
         ind_charCon1, ind_charCon2 = te.dpb_ind_carCon_vs_temp(temp_array, fermi_energy, meff, gap, degen)
-        
+        print(ind_charCon1)
+        print("\n\n\n\n")
+        print(ind_charCon2)
+        print("\n\n\n\n")
+        print(m1)
         return temp_array, m1**1.5 * ind_charCon1, m1**1.5 * ind_charCon2
     
     def dpb_elecCond_calc(

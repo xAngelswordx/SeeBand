@@ -1,5 +1,9 @@
 import numpy as np
 from modules import data_processing as dp
+import tensorflow as tf
+tf.config.run_functions_eagerly(True)
+tf.data.experimental.enable_debug_mode()
+
 
 class Models():
     
@@ -39,18 +43,19 @@ class Models():
                 
         print(f"Return no model since t_min = {t_min_data} and t_max = {t_max_data}")
         self.current_model = None
-            
+    @tf.autograph.experimental.do_not_convert    
     def get_prediction(self, temp_array, see_array):
         self._select_model(temp_array)
         if (self.current_model != None):
             see_array = self._interpolate_seebeck(temp_array, see_array)
             trans_see_array = self._transform_seebeck(see_array)
+            
             pred = self.current_model.predict(trans_see_array.reshape(1,-1))
             
             return self._transform_prediction(see_array, self._reverse_norm(pred[0]))
         else:
             return None
-
+        
     def _load(self, model_name):
         from tensorflow.keras.models import model_from_json
         

@@ -4,6 +4,6 @@ In addition to analyzing your data sets, we encourage you to explore its feature
 
 The software is available as source code as well as executable program that can be downloaded and started directly in the respective folders.
 
-If you encounter any issues, have questions, or would like to provide feedback, please feel free to contact me at Michael.parzer@tuwien.ac.at.
+If you encounter any issues, have questions, or would like to provide feedback, please feel free to contact me at Michael_parzer@yahoo.de.
 
 Thank you!

@@ -1,4 +1,8 @@
 import sys
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+#Special library
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from PyQt5.QtWidgets import (
     QMainWindow, QApplication, QVBoxLayout, QStackedLayout, QGridLayout, QHBoxLayout,
     QLabel, QToolBar, QAction, QPushButton, QWidget, QSlider, QFileDialog,
@@ -10,10 +14,9 @@ import pyqtgraph as pg
 import numpy as np
 
 from modules import data_processing as dp
-from modules import fit_module1
+from modules import fit_module
 from modules import neural_nets as nn
 
-import os
 #Special library
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
@@ -1379,7 +1382,7 @@ class MainWindow(QMainWindow):
         # self.graph_Xaxis_spb_hall_hall.setHeight(h=60)
         # self.graph_Yaxis_spb_hall_hall.setWidth(w=60)
         self.graph_Xaxis_spb_hall_hall.setLabel('<p style="font-size:18px;color=white">Temperature [K] </p>')
-        self.graph_Yaxis_spb_hall_hall.setLabel('<p style="font-size:18px;color=white">Hall coefficient [m<sup>3</sup>/A<sup>-1</sup>s<sup>-1</sup>] </p>')
+        self.graph_Yaxis_spb_hall_hall.setLabel('<p style="font-size:18px;color=white">Hall coefficient [m<sup>3</sup>A<sup>-1</sup>s<sup>-1</sup>] </p>')
         self.graph_Xaxis_spb_hall_hall.label.setFont(self.mainplot_font)
         self.graph_Yaxis_spb_hall_hall.label.setFont(self.mainplot_font)
         self.graph_spb_hall_hall.setContentsMargins(2, 0, 5, 10)
@@ -2712,7 +2715,7 @@ class MainWindow(QMainWindow):
         # self.graph_Xaxis_hall.setHeight(h=60)
         # self.graph_Yaxis_hall.setWidth(w=60)
         self.graph_Xaxis_hall.setLabel('<p style="font-size:18px;color=white">Temperature [K] </p>')
-        self.graph_Yaxis_hall.setLabel('<p style="font-size:18px;color=white">Hall coefficient [m<sup>3</sup>/A<sup>-1</sup>s<sup>-1</sup>] </p>')
+        self.graph_Yaxis_hall.setLabel('<p style="font-size:18px;color=white">Hall coefficient [m<sup>3</sup>A<sup>-1</sup>s<sup>-1</sup>] </p>')
         self.graph_Xaxis_hall.label.setFont(self.mainplot_font)
         self.graph_Yaxis_hall.label.setFont(self.mainplot_font)
         self.graph_hall.setContentsMargins(2, 0, 5, 10)
@@ -3246,10 +3249,14 @@ class MainWindow(QMainWindow):
         for key in self.experimental_data_scatter["see"]:
             self.experimental_data_scatter["see"][key].setData(self.data[:, 0], self.data[:, 1])
             
-        self.model_prediction_thread = NeuralNetPredictionThread(self)
-        # self.model_prediction_thread.updateGUI.connect(self.update_fit_results_spb_see)
-        # self.model_prediction_thread.error_occurred.connect(self.error_stop_waiting_gif)
-        self.model_prediction_thread.start()
+        try:
+            self.model_prediction_thread = NeuralNetPredictionThread(self)
+            # self.model_prediction_thread.updateGUI.connect(self.update_fit_results_spb_see)
+            # self.model_prediction_thread.error_occurred.connect(self.error_stop_waiting_gif)
+            self.model_prediction_thread.start()
+        
+        except Exception as e:
+            print(f"Neural network prediction was unsuccesful due to the following error: {e}")
 
     def res_databutton_clicked(self, s):
         self.experimental_data_spb_see.setEnabled(True)
@@ -5087,6 +5094,7 @@ class NeuralNetPredictionThread(QThread):
             self.main.bandgap_slider_dpb_hall.setValue(round(model_pred[1]))
             self.main.fermi_slider_dpb_hall.setValue(round(model_pred[2]))
             self.main.manipulate_value_changed_dpb_hall()
+        
 
 """
 Advanced options (set limits) windows
@@ -6332,7 +6340,7 @@ class AddGraphsWinDpbSee(QWidget):
             )
         
         self.x_values = xy_ind_data[0]
-        self.y1_values, self.y2_values = xy_ind_data[1], xy_ind_data[2]
+        self.y1_values, self.y2_values = xy_ind_data[1]*1e6, xy_ind_data[2]*1e6
         
         plot_item1 = pg.PlotCurveItem()
         plot_item1.setData(self.x_values, self.y1_values, pen=self.pen_ind1, clear=True)
@@ -6558,7 +6566,7 @@ class AddGraphsWinDpbRes(QWidget):
             )
         
         self.x_values = xy_ind_data[0]
-        self.y1_values, self.y2_values = xy_ind_data[1], xy_ind_data[2]
+        self.y1_values, self.y2_values = xy_ind_data[1]*1e6, xy_ind_data[2]*1e6
         
         plot_item1 = pg.PlotCurveItem()
         plot_item1.setData(self.x_values, self.y1_values, pen=self.pen_ind1, clear=True)
@@ -6889,11 +6897,11 @@ class AddGraphsWinDpbHall(QWidget):
             self.main.maxT, 
             50, 
             [self.main.mass_slider_dpb_hall.value()/100., self.main.bandgap_slider_dpb_hall.value(), self.main.fermi_slider_dpb_hall.value()],
-            float(self.main.Nv2_value_dpb_hall.text())/float(self.main.Nv1_value_dpb_hall.text()), self.main.para_E_slider_dpb_hall.value()
+            float(self.main.Nv2_value_dpb_hall.text())/float(self.main.Nv1_value_dpb_hall.text()), self.main.para_E_slider_dpb_hall.value()/100.
             )
         
         self.x_values = xy_ind_data[0]
-        self.y1_values, self.y2_values = xy_ind_data[1], xy_ind_data[2]
+        self.y1_values, self.y2_values = xy_ind_data[1]*1e6, xy_ind_data[2]*1e6
         
         plot_item1 = pg.PlotCurveItem()
         plot_item1.setData(self.x_values, self.y1_values, pen=self.pen_ind1, clear=True)
@@ -7088,8 +7096,7 @@ class AddGraphsWinDpbHall(QWidget):
         
 # Main to start the program
 if __name__ == "__main__":
-    TE = fit_module1.PB_fit()
-
+    TE = fit_module.PB_fit()
     app = QApplication(sys.argv)
     with open("stylesheet.css", "r") as style:
         app.setStyleSheet(style.read())

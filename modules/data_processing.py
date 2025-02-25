@@ -34,7 +34,7 @@ def validate_data(data):
 
     length = len(data)
     for i in range(length):
-        if re.match("^\s*\d+\.?\d*(?:\s*|\,*|\t*)-?\d+\.?\d*(?:[eE][+\-]?\d+)?\s*(\\n?)$", data[length - i - 1]) is None:
+        if re.match("^\s*\d+\.?\d*(?:[eE][+\-]?\d+)?(?:\s*|\,*|\t*)-?\d+\.?\d*(?:[eE][+\-]?\d+)?\s*(\\n?)", data[length - i - 1]) is None:
             data.pop(length - i - 1)
     if len(data) == 0:
         raise Exception("Error in function 'validate_data': array has no valid entry")
